@@ -76,7 +76,7 @@ def main():
         conf.load_config()
 
     conf.reload_config()
-    conf.print_config()
+    # conf.print_config()
 
     # x = int(input("Please enter an integer: "))
     # if x < 0:
