@@ -1,47 +1,43 @@
-import os.path
-import configparser
-top_path = os.path.dirname(__file__)
+import logging
+from configuration import Configuration
 
 
-def oz_config(mobile_os, input_file):
-    if len(input_file) > 0:
-        if os.path.isfile(input_file):
-            config_file = input_file
-    else:
-        if os.path.isfile(top_path + '/oz_cd.cfg'):
-            config_file = top_path + "/oz_cd.cfg"
+class OZConfig():
+    config = Configuration()
+    def __init__(self, file_name):
+        self.config_filename = file_name
+        self.config.load_config(file_name)
+        logging.info("Config file is %s", file_name)
 
-    slack = {}
-    teams = {}
-    config = configparser.ConfigParser()
-    config.file = config_file
+    def load_config(self):
+        self.slack_channel = self.config.get_config_string('Slack', 'SlackChannel', 'default_channel')
+        self.slack_enabled = self.config.get_config_bool('Slack', 'SlackEnabled', True)
 
-    if os.path.isfile(config.file):
-        config.read_file(open(config.file))
+        self.teams_webhook = self.config.get_config_string('Teams', 'TeamsWebhook', 'default_webhook')
+        self.teams_enabled = self.config.get_config_bool('Teams', 'TeamsEnabled', True)
 
-        # Slack
-        slack['Enabled'] = config.getboolean("Slack", "SlackEnabled")
-        slack['Channel'] = config.get("Slack", "SlackChannel")
-        config.slack = slack
+    def reload_config(self):
+        self.config.load_config(self.config_filename)
+        self.load_config()
 
-        # Teams
-        teams['Enabled'] = config.getboolean("Teams", "TeamsEnabled")
-        teams['Webhook'] = config.get("Teams", "TeamsWebhook")
-        config.teams = teams
+    def print_config(self):
+        logging.info(f'slack_channel: [{self.slack_channel}]')
+        logging.info(f'slack_enabled: [{self.slack_enabled}]')
 
-    else:
-        # Slack
-        config.add_section("Slack")
-        config.set('Slack', 'SlackEnabled', 'false')
-        config.set('Slack', 'SlackChannel', '')
+        logging.info(f'teams_webhook: [{self.teams_webhook}]')
+        logging.info(f'teams_enabled: [{self.teams_enabled}]')
 
-        # Teams
-        config.add_section("Teams")
-        config.set('Teams', 'TeamsEnabled', 'false')
-        config.set('Teams', 'TeamsWebhook', '')
 
-        # Writing our configuration file to 'oz_cd.cfg'
-        with open(config.file, 'w') as configfile:
-            config.write(configfile)
+def printUsage(arg):
+    print('Usage : ' + arg[0] + ' -c [ConfigFile] -d [DBConfigFile]')
 
-    return config
+
+conf_filename = './oz_cd.cfg'
+
+
+print('Config File name: ' + conf_filename)
+conf = OZConfig(conf_filename)
+conf.load_config()
+
+
+

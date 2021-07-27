@@ -21,7 +21,7 @@ import sys
 import os.path
 import json
 from ext_commands import Commands, logging
-from oz_cd_config import oz_config
+from oz_cd_config import conf
 
 import argparse
 
@@ -63,7 +63,7 @@ def main():
     ################################################################################
     # External commands and installations if not exist
     command = Commands()
-    out = subprocess.run([command.jq, "-h"])  # run external command
+    subprocess.run([command.jq, "-h"])  # run external command
 
     ################################################################################
     # Declaration
@@ -71,17 +71,12 @@ def main():
     ################################################################################
     # Check path of file and directory and cope with them
     if args.config and os.path.isfile(args.config[0]):
-        config = oz_config(mobile_os, args.config[0])
-        logging.info("input file: %s", args.config[0])
+        conf.load_config(args.config[0])
     else:
-        config = oz_config(mobile_os, "")
+        conf.load_config()
 
-    logging.debug("Config sections: %s", config.sections())
-    logging.debug("Slack: %s", config.slack['Channel'])
-    logging.debug("Slack Enabled: %s", config.slack['Enabled'])
-    logging.debug("Teams: %s", config.teams['Webhook'])
-    logging.debug("Teams Enabled: %s", config.teams['Enabled'])
-    logging.info("Config file: %s", config.file)
+    conf.reload_config()
+    conf.print_config()
 
     # x = int(input("Please enter an integer: "))
     # if x < 0:
