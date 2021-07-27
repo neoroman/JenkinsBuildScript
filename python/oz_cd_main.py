@@ -22,6 +22,8 @@ import os.path
 import json
 from ext_commands import Commands, logging
 from oz_cd_config import conf
+from oz_cd_android import Android
+from oz_cd_ios import iOS
 
 import argparse
 
@@ -77,6 +79,9 @@ def main():
 
     conf.reload_config()
     # conf.print_config()
+
+    Android.__init__(conf.config_filename)
+    iOS.__init__(conf.config_filename)
 
     # x = int(input("Please enter an integer: "))
     # if x < 0:

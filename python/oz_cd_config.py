@@ -1,5 +1,5 @@
 import os
-import logging
+from ext_commands import logging
 from configuration import Configuration
 
 cwd = os.getcwd()
