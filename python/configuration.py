@@ -1,60 +1,62 @@
-import os
-import sys
 import configparser
 
+
 class Configuration():
-    def load_config(self, fileName) :
+
+    def __init__(self):
         self.config = configparser.ConfigParser()
+
+    def load_config(self, fileName):
         self.config.read(fileName)
 
     def get_config_string(self, *args) : 
-        if not args :
+        if not args:
             return ''
 
-        else :
-            if len(args) < 3 :
-                try :
+        else:
+            if len(args) < 3:
+                try:
                     return self.config.get(args[0], args[1])
-                except :
+                except:
                     return ''
-            else :
-                try :
+            else:
+                try:
                     return self.config.get(args[0], args[1])
-                except :
+                except:
                     return args[2]    # return default value
 
-    def get_config_integer(self, *args) :
-        if not args :
+    def get_config_integer(self, *args):
+        if not args:
             return ''
-        else :
-            if len(args) < 3 :
-                try :
+        else:
+            if len(args) < 3:
+                try:
                     return self.config.getint(args[0], args[1])
-                except :
+                except:
                     return 0
-            else :
-                try :
+            else:
+                try:
                     return self.config.getint(args[0], args[1])
-                except :
+                except:
                     return int(args[2])    # return default value
 
-    def get_config_bool(self, *args) :
-        if not args :
+    def get_config_bool(self, *args):
+        if not args:
             return True
-        else :
-            if len(args) < 3 :
-                try :
+        else:
+            if len(args) < 3:
+                try:
                     return self.config.getboolean(args[0], args[1])
-                except :
+                except:
                     return True
-            else :
-                try :
+            else:
+                try:
                     return self.config.getboolean(args[0], args[1])
-                except :
+                except:
                     return bool(args[2])    # return default value
          
-    def get_config_list(self, *args) : 
-        if not args :
+    def get_config_list(self, *args):
+        if not args:
             return ''
       
         try:

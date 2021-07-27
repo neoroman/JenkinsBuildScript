@@ -63,6 +63,3 @@ class Commands:
     if not os.path.isfile(curl):
         logging.debug("File not exist: %s", curl if len(curl) > 0 else "/usr/bin/curl")
 
-    jq = run(['which', 'jq'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip('\n')
-    if not os.path.isfile(jq):
-        logging.debug("File not exist: %s", jq if len(jq) > 0 else "/usr/local/bin/jq")

@@ -63,7 +63,7 @@ def main():
     ################################################################################
     # External commands and installations if not exist
     command = Commands()
-    subprocess.run([command.jq, "-h"])  # run external command
+    subprocess.run([command.curl, "--version"])  # run external command
 
     ################################################################################
     # Declaration

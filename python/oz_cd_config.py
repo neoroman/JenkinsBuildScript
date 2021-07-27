@@ -5,8 +5,9 @@ from configuration import Configuration
 cwd = os.getcwd()
 
 
-class OZConfig():
+class OZConfig:
     config = Configuration()
+
     def __init__(self, file_name):
         self.config_filename = file_name
         self.config.load_config(file_name)
@@ -37,10 +38,6 @@ def print_usage(arg):
 
 conf_filename = cwd + '/python/oz_cd.cfg'
 
-
 logging.debug('Config File name: ' + conf_filename)
 conf = OZConfig(conf_filename)
 conf.load_config()
-
-
-
