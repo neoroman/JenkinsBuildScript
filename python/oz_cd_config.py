@@ -1,5 +1,8 @@
+import os
 import logging
 from configuration import Configuration
+
+cwd = os.getcwd()
 
 
 class OZConfig():
@@ -28,14 +31,14 @@ class OZConfig():
         logging.info(f'teams_enabled: [{self.teams_enabled}]')
 
 
-def printUsage(arg):
+def print_usage(arg):
     print('Usage : ' + arg[0] + ' -c [ConfigFile] -d [DBConfigFile]')
 
 
-conf_filename = './oz_cd.cfg'
+conf_filename = cwd + '/python/oz_cd.cfg'
 
 
-print('Config File name: ' + conf_filename)
+logging.debug('Config File name: ' + conf_filename)
 conf = OZConfig(conf_filename)
 conf.load_config()
 
