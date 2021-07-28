@@ -20,10 +20,10 @@ import subprocess
 import sys
 import os.path
 import json
-from ext_commands import Commands, logging
-from oz_cd_config import conf
-from oz_cd_android import Android
-from oz_cd_ios import iOS
+from utils.ext_commands import Commands, logging
+from utils.oz_cd_config import conf
+from utils.oz_cd_android import Android
+from utils.oz_cd_ios import iOS
 
 import argparse
 

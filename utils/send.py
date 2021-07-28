@@ -1,4 +1,4 @@
-#! /usr/local/bin/python
+#! /usr/local/bin/utils
 """Sends an actionable message with the mail.html payload
 Usage: 'send.py -u <username> -p <password> [-r <recipient>] [-f <paylod file name>]'
 """

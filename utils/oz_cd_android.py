@@ -1,12 +1,12 @@
 import os
-from oz_cd_config import conf
+from utils.oz_cd_config import conf
 
 cwd = os.getcwd()
 
 
 class Android:
 
-    def __init__(self, config_file=cwd + '/python/oz_cd.cfg'):
+    def __init__(self, config_file=cwd + '/utils/oz_cd.cfg'):
         conf.config_filename = config_file
         conf.reload_config()
         # conf.print_config()
@@ -15,7 +15,7 @@ class Android:
     def version():
         workspace = conf.config.get_config_string('Android', 'Workspace')
         verProf = conf.config.get_config_string('Android', 'VersionProperties')
-        with open(f"{cwd}/python/{workspace}{verProf}", 'r') as f:
+        with open(f"{cwd}/{workspace}{verProf}", 'r') as f:
             lines = f.readlines()
             for line in lines:
                 line = line.strip()
@@ -32,7 +32,7 @@ class Android:
     def version_code():
         workspace = conf.config.get_config_string('Android', 'Workspace')
         gradle = conf.config.get_config_string('Android', 'BuildGradle')
-        with open(f"{cwd}/python/{workspace}{gradle}", 'r') as f:
+        with open(f"{cwd}/{workspace}{gradle}", 'r') as f:
             lines = f.readlines()
             for line in lines:
                 line = line.strip()

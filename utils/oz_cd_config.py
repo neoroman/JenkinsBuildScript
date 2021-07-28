@@ -1,6 +1,8 @@
 import os
-from ext_commands import logging
-from configuration import Configuration
+from typing import Any, Union
+
+from utils.ext_commands import logging
+from utils.configuration import Configuration
 
 cwd = os.getcwd()
 
@@ -11,7 +13,7 @@ class OZConfig:
     def __init__(self, file_name):
         self.config_filename = file_name
         self.config.load_config(file_name)
-        logging.info("Config file is %s", file_name)
+        logging.debug("Config file is %s", file_name)
 
     def load_config(self):
         self.slack_channel = self.config.get_config_string('Slack', 'SlackChannel', 'default_channel')
@@ -36,7 +38,7 @@ def print_usage(arg):
     print('Usage : ' + arg[0] + ' -c [ConfigFile] -d [DBConfigFile]')
 
 
-conf_filename = cwd + '/python/oz_cd.cfg'
+conf_filename = cwd + '/utils/oz_cd.cfg'
 
 logging.debug('Config File name: ' + conf_filename)
 conf = OZConfig(conf_filename)
