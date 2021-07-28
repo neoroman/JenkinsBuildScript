@@ -81,7 +81,7 @@ def main():
     # conf.print_config()
 
     Android.__init__(conf.config_filename)
-    logging.info(f"Android version: {Android.version()}")
+    logging.info(f"Android version: {Android.version()} ({Android.version_code()})")
     # iOS.__init__(conf.config_filename)
 
     # x = int(input("Please enter an integer: "))

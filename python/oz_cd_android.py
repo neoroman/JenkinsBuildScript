@@ -16,9 +16,9 @@ class Android:
         workspace = conf.config.get_config_string('Android', 'Workspace')
         verProf = conf.config.get_config_string('Android', 'VersionProperties')
         with open(f"{cwd}/python/{workspace}{verProf}", 'r') as f:
-            lines = f.readline()
+            lines = f.readlines()
             for line in lines:
-                print("A line:", line)
+                line = line.strip()
                 if 'major' in line:
                     major = line.split('=')[1]
                 if 'minor' in line:
@@ -27,3 +27,15 @@ class Android:
                     point = line.split('=')[1]
 
         return f"{major}.{minor}.{point}"
+
+    def version_code():
+        workspace = conf.config.get_config_string('Android', 'Workspace')
+        gradle = conf.config.get_config_string('Android', 'BuildGradle')
+        with open(f"{cwd}/python/{workspace}{gradle}", 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                line = line.strip()
+                if 'versionCode' in line:
+                    versionCode = line.split(' ')[1]
+
+        return f"{versionCode}"
