@@ -11,8 +11,7 @@ class Android:
         conf.reload_config()
         # conf.print_config()
 
-    @staticmethod
-    def version():
+    def version(self):
         workspace = conf.config.get_config_string('Android', 'Workspace')
         verProf = conf.config.get_config_string('Android', 'VersionProperties')
         with open(f"{cwd}/{workspace}{verProf}", 'r') as f:
@@ -28,8 +27,7 @@ class Android:
 
         return f"{major}.{minor}.{point}"
 
-    @staticmethod
-    def version_code():
+    def version_code(self):
         workspace = conf.config.get_config_string('Android', 'Workspace')
         gradle = conf.config.get_config_string('Android', 'BuildGradle')
         with open(f"{cwd}/{workspace}{gradle}", 'r') as f:

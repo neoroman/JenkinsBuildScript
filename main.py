@@ -20,12 +20,12 @@ import subprocess
 import sys
 import os.path
 import json
+import argparse
 from utils.ext_commands import Commands, logging
 from utils.oz_cd_config import conf
 from utils.oz_cd_android import Android
 from utils.oz_cd_ios import iOS
 
-import argparse
 
 ################################################################################
 # Check environments
@@ -82,10 +82,10 @@ def main():
 
     if mobile_os == 'android':
         android = Android(conf.config_filename)
-        logging.info(f"Android version: {Android.version()} ({Android.version_code()})")
+        logging.info(f"Android version: {android.version()} ({android.version_code()})")
     else:
         ios = iOS(conf.config_filename)
-        logging.info(f"iOS version: {iOS.version()} ({iOS.version_code()})")
+        logging.info(f"iOS version: {ios.version()} ({ios.version_code()})")
 
     # x = int(input("Please enter an integer: "))
     # if x < 0:
