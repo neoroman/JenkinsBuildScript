@@ -21,7 +21,7 @@ class Commands:
     if not os.path.isfile(brew):
         logging.debug("File not exist: %s", brew)
 
-    logging.info("External Command Argument: %s", sys.argv)
+    logging.debug("External Command Argument: %s", sys.argv)
 
     if platform == 'ios':
         lipo = run(['which', 'lipo'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip('\n')

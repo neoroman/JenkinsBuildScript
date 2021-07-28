@@ -15,12 +15,12 @@
 #  3. Install a2ps via HomeBrew, brew install a2ps
 #  4. Install gs via HomeBrew, brew install gs
 #
-import subprocess
 # import requests
 import sys
 import os.path
 import json
 import argparse
+from subprocess import Popen, PIPE
 from utils.ext_commands import Commands, logging
 from utils.oz_cd_config import conf
 from utils.oz_cd_android import Android
@@ -65,7 +65,9 @@ def main():
     ################################################################################
     # External commands and installations if not exist
     command = Commands()
-    subprocess.run([command.curl, "--version"])  # run external command
+    # run external command
+    with Popen([command.curl, "--version"], stdout=PIPE, stderr=PIPE, universal_newlines=True) as out:
+        logging.debug("curl output: %s", out.stdout.read().rstrip('\n'))
 
     ################################################################################
     # Declaration
@@ -82,21 +84,12 @@ def main():
 
     if mobile_os == 'android':
         android = Android(conf.config_filename)
-        logging.info(f"Android version: {android.version()} ({android.version_code()})")
+        logging.info(f"Android version: {android.version()}")
+        logging.info(f"Android versionCode: {android.version_code()}")
     else:
         ios = iOS(conf.config_filename)
-        logging.info(f"iOS version: {ios.version()} ({ios.version_code()})")
-
-    # x = int(input("Please enter an integer: "))
-    # if x < 0:
-    #     x = 0
-    #     print('Negative changed to zero')
-    # elif x == 0:
-    #     print('Zero')
-    # elif x == 1:
-    #     print('Single')
-    # else:
-    #     print('More')
+        logging.info(f"iOS version: {ios.version()}")
+        logging.info(f"iOS build: {ios.build()}")
 
     ################################################################################
     # Run gradlew for android, run xcodebuild for ios

@@ -14,7 +14,7 @@ class Android:
     def version(self):
         workspace = conf.config.get_config_string('Android', 'Workspace')
         verProf = conf.config.get_config_string('Android', 'VersionProperties')
-        with open(f"{cwd}/{workspace}{verProf}", 'r') as f:
+        with open(f"{cwd}/{workspace}/{verProf}", 'r') as f:
             lines = f.readlines()
             for line in lines:
                 line = line.strip()
@@ -30,7 +30,7 @@ class Android:
     def version_code(self):
         workspace = conf.config.get_config_string('Android', 'Workspace')
         gradle = conf.config.get_config_string('Android', 'BuildGradle')
-        with open(f"{cwd}/{workspace}{gradle}", 'r') as f:
+        with open(f"{cwd}/{workspace}/{gradle}", 'r') as f:
             lines = f.readlines()
             for line in lines:
                 line = line.strip()
