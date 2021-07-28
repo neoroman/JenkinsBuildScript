@@ -28,6 +28,7 @@ class Android:
 
         return f"{major}.{minor}.{point}"
 
+    @staticmethod
     def version_code():
         workspace = conf.config.get_config_string('Android', 'Workspace')
         gradle = conf.config.get_config_string('Android', 'BuildGradle')

@@ -80,9 +80,12 @@ def main():
     conf.reload_config()
     # conf.print_config()
 
-    Android.__init__(conf.config_filename)
-    logging.info(f"Android version: {Android.version()} ({Android.version_code()})")
-    # iOS.__init__(conf.config_filename)
+    if mobile_os == 'android':
+        android = Android(conf.config_filename)
+        logging.info(f"Android version: {Android.version()} ({Android.version_code()})")
+    else:
+        ios = iOS(conf.config_filename)
+        logging.info(f"iOS version: {iOS.version()} ({iOS.version_code()})")
 
     # x = int(input("Please enter an integer: "))
     # if x < 0:
