@@ -81,7 +81,8 @@ def main():
     # conf.print_config()
 
     Android.__init__(conf.config_filename)
-    iOS.__init__(conf.config_filename)
+    logging.info(f"Android version: {Android.version()}")
+    # iOS.__init__(conf.config_filename)
 
     # x = int(input("Please enter an integer: "))
     # if x < 0:

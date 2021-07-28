@@ -1,0 +1,38 @@
+android {
+    // Version
+    def p = new Properties();
+    file("version.properties").withInputStream { p.load(it) }
+    def appVersion = p.getProperty("major") + "." + p.getProperty("minor") + "." + p.getProperty("point")
+    def debugAppVersion = p.getProperty("debug_major") + "." + p.getProperty("debug_minor") + "." + p.getProperty("debug_point") + "." + p.getProperty("debug_local")
+
+    println appVersion
+    println debugAppVersion
+
+    configurations.all() {
+        resolutionStrategy.force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+
+    def archivesBaseName = 'KT_GiGAGenie3_' + appVersion + "_ES1"
+    println archivesBaseName
+    setProperty("archivesBaseName", archivesBaseName)
+
+    compileSdkVersion 29
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId "com.kt.gigagenie.mobile"
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 160
+        versionName appVersion
+        multiDexEnabled true
+    }
+}

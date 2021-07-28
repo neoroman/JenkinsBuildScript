@@ -9,7 +9,7 @@ class Configuration:
     def load_config(self, fileName):
         self.config.read(fileName)
 
-    def get_config_string(self, *args) : 
+    def get_config_string(self, *args):
         if not args:
             return ''
         if len(args) < 3:
