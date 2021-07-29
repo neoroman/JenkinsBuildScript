@@ -7,13 +7,6 @@
 # Modified by Henry Kim on 2019.06.19 referenced from jenkins-shell-AOS-preRelease.sh
 # Porting by Henry Kim on 2021.06.23
 #
-# Prerequisites for executing this script
-#  1. Install slack from "https://github.com/rockymadden/slack-cli"
-#     (also use "brew install rockymadden/rockymadden/slack-cli"),
-#      run "slack init", and Enter Slack API token from https://api.slack.com/custom-integrations/legacy-tokens
-#  2. Install jq path with "/usr/local/bin/jq" in "/usr/local/bin/slack"
-#  3. Install a2ps via HomeBrew, brew install a2ps
-#  4. Install gs via HomeBrew, brew install gs
 #
 # import requests
 import sys
