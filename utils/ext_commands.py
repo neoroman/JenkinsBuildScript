@@ -37,14 +37,14 @@ class Commands:
         if not os.path.isfile(lipo):
             logging.warning("File not exist: %s", lipo if len(lipo) > 0 else "/usr/bin/lipo")
 
-    xcode = run(['which', 'xcodebuild'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip(
+        xcode = run(['which', 'xcodebuild'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip(
         '\n')
-    if not os.path.isfile(xcode):
-        logging.warning("File not exist: %s", xcode if len(xcode) > 0 else "/usr/bin/xcodebuild")
+        if not os.path.isfile(xcode):
+            logging.warning("File not exist: %s", xcode if len(xcode) > 0 else "/usr/bin/xcodebuild")
 
-    pod = run(['which', 'pod'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip('\n')
-    if not os.path.isfile(pod):
-        logging.warning("File not exist: %s, Install CocoaPods from https://cocoapods.org first",
+        pod = run(['which', 'pod'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip('\n')
+        if not os.path.isfile(pod):
+            logging.warning("File not exist: %s, Install CocoaPods from https://cocoapods.org first",
                         pod if len(pod) > 0 else "/usr/local/bin/pod")
 
     zip = run(['which', 'zip'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip('\n')
@@ -63,6 +63,7 @@ class Commands:
     if not os.path.isfile(gs):
         logging.debug("File not exist: %s", gs if len(gs) > 0 else "/usr/local/bin/gs")
 
+    # convert from ``brew install imgmagick``
     convert = run(['which', 'convert'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip(
         '\n')
     if not os.path.isfile(convert):
