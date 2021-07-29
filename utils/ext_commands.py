@@ -22,14 +22,13 @@ class Commands:
     os_name = platform.system()
     system_info = platform.platform()
 
-    logging.debug("OS name: %s", os_name)
-    logging.debug("System info: %s", system_info)
+    logging.info("OS name: %s", os_name)
+    logging.info("System info: %s", system_info)
 
     if os_name == 'Darwin':
         brew = run(['which', 'brew'], stdin=PIPE, stdout=PIPE, stderr=PIPE, universal_newlines=True).stdout.rstrip('\n')
-
-    if not os.path.isfile(brew):
-        logging.debug("File not exist: %s", brew)
+        if not os.path.isfile(brew):
+            logging.debug("File not exist: %s", brew)
 
     logging.debug("External Command Argument: %s", sys.argv)
 
